@@ -1002,7 +1002,7 @@ checkExistingSession();
 // LOGIN / ORDER NUMBER
 // ============================================================
 
-const BACKEND_URL = "http://localhost:3000";
+const BACKEND_URL = "https://backend-s75r.onrender.com";
 
 
 // ============================================================
@@ -1143,7 +1143,7 @@ if (continueBtn) {
             try {
 
                 const response = await fetch(
-    "http://localhost:3000/api/login",
+    "https://backend-s75r.onrender.com/api/login",
     {
         method: "POST",
 
