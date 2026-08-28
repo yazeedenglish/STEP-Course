@@ -105,509 +105,515 @@ body {
 }
 
 
-/* ========================================================= */
-/* TOP HEADER                                                */
-/* ========================================================= */
+ /* ========================================================= */
+ /* TOP HEADER                                                */
+ /* ========================================================= */
 
-/* This is the top navigation area. */
 .top-header {
+    position: fixed;
 
-    /* Keep the logo and buttons on one line. */
+    top: 0;
+    right: 0;
+    left: 0;
+
+    width: 100%;
+    min-height: 75px;
+
     display: flex;
-
-    /* Push them to opposite sides. */
+    align-items: center;
     justify-content: space-between;
 
-    /* Center them vertically. */
-    align-items: center;
+    padding: 12px 35px;
 
-    /* Add space inside the header. */
-    padding: 18px 35px;
+    background: var(--card);
 
-    /* Bottom border. */
     border-bottom: 1px solid var(--line);
 
-    /* Header background. */
-    background: var(--card);
+    box-shadow:
+        0 4px 20px rgba(0, 39, 58, 0.06);
+
+    z-index: 1000;
 }
 
 
-/* Brand container. */
+/* ========================================================= */
+/* BRAND                                                     */
+/* ========================================================= */
+
 .brand {
-
-    /* Put logo and text beside each other. */
     display: flex;
-
-    /* Center them vertically. */
     align-items: center;
-
-    /* Space between logo and text. */
     gap: 12px;
 }
 
 
-/* Small logo. */
 .brand-logo {
-
-    /* This controls the logo width. */
     width: 42px;
-
-    /* This controls the logo height. */
     height: 42px;
 
-    /* This keeps the logo proportional. */
     object-fit: contain;
 
-    /* This prevents the logo from shrinking. */
     flex-shrink: 0;
 }
 
 
-/* Brand text container. */
 .brand-text {
-
-    /* Put the two text lines vertically. */
     display: flex;
-
     flex-direction: column;
-
-    /* Small gap. */
     gap: 1px;
 }
 
 
-/* Main brand name. */
 .brand-text strong {
-
-    /* Font size. */
     font-size: 15px;
-
-    /* Heavy font. */
     font-weight: 900;
 }
 
 
-/* Small STEP Course text. */
 .brand-text span {
-
-    /* Small font. */
     font-size: 11px;
     margin-left: 8%;
     text-align: center;
-
-    /* Soft color. */
     color: var(--ink-soft);
 }
 
 
-/* Theme buttons container. */
-/* Theme button container. */
-.theme-buttons {
+/* ========================================================= */
+/* LEFT SIDE BUTTONS                                         */
+/* ========================================================= */
 
-    /* Keep the button independent from the logo. */
+/*
+   Because the website uses dir="rtl",
+   this container is placed on the left side.
+*/
+.theme-buttons {
     position: absolute;
 
-    /* Far left. */
     left: 35px;
+    top: 50%;
 
-    /* Align with the center of the header. */
-    top: 3%;
-
-    /* Move the button upward by half its own height. */
     transform: translateY(-50%);
 
-    /* Keep the button visible. */
     display: flex;
-
-    /* Center the button vertically. */
     align-items: center;
 
-    /* No extra spacing. */
     gap: 7px;
+
+    direction: ltr;
 }
 
 
-/* Theme button. */
-.theme-btn {
+/* ========================================================= */
+/* COURSE FILE BUTTON                                        */
+/* ========================================================= */
 
-    /* Button size. */
+/*
+   Course file button has exactly the same visual style
+   as the moon button.
+*/
+.course-file-btn {
+    width: auto;
+    min-height: 38px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    padding: 0 14px;
+
+    border: 1px solid var(--line);
+
+    border-radius: 10px;
+
+    background: var(--card);
+
+    color: var(--ink);
+
+    text-decoration: none;
+
+    font-family: inherit;
+    font-size: 13px;
+    font-weight: 800;
+
+    cursor: pointer;
+
+    transition:
+        transform 0.2s ease,
+        border-color 0.2s ease,
+        background 0.2s ease;
+}
+
+
+/* Course file hover. */
+.course-file-btn:hover {
+    border-color: var(--indigo);
+
+    background: var(--paper);
+
+    transform: translateY(-2px);
+}
+
+
+/* ========================================================= */
+/* THEME BUTTON                                              */
+/* ========================================================= */
+
+.theme-btn {
     width: 38px;
     height: 38px;
 
-    /* Remove border. */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
     border: 1px solid var(--line);
 
-    /* Round button. */
     border-radius: 10px;
 
-    /* Card background. */
     background: var(--card);
 
-    /* Cursor. */
+    color: var(--ink);
+
     cursor: pointer;
 
-    /* Smooth hover. */
-    transition: 0.2s;
+    font-size: 17px;
+
+    transition:
+        transform 0.2s ease,
+        border-color 0.2s ease,
+        background 0.2s ease;
 }
 
 
 /* Theme button hover. */
 .theme-btn:hover {
-
-    /* Blue border. */
     border-color: var(--indigo);
 
-    /* Slight movement. */
+    background: var(--paper);
+
     transform: translateY(-2px);
 }
 
 
-/* ===================================================== */
-/* LOGIN / ORDER NUMBER SCREEN                           */
-/* ===================================================== */
+/* ========================================================= */
+/* SPACE FOR FIXED HEADER                                    */
+/* ========================================================= */
 
-.access-screen {
-    position: fixed;
-    inset: 0;
-    z-index: 9999;
-
-    display: flex;
-    align-items: center;
-    justify-content: center;
-
-    padding: 20px;
-
-    background:
-        radial-gradient(
-            circle at top right,
-            rgba(37, 99, 235, 0.12),
-            transparent 35%
-        ),
-        linear-gradient(
-            135deg,
-            #f8fbff 0%,
-            #eef6ff 50%,
-            #ffffff 100%
-        );
-
-    direction: rtl;
+body {
+    padding-top: 75px;
 }
 
 
-/* ===================================================== */
-/* LOGIN BOX                                             */
-/* ===================================================== */
+/* ========================================================= */
+/* MOBILE HEADER                                             */
+/* ========================================================= */
 
-.access-box {
-    width: 100%;
-    max-width: 430px;
+@media (max-width: 550px) {
 
-    padding: 42px 35px;
+    .top-header {
+        min-height: 68px;
 
-    background: rgba(255, 255, 255, 0.96);
-
-    border: 1px solid rgba(37, 99, 235, 0.10);
-
-    border-radius: 24px;
-
-    box-shadow:
-        0 20px 60px rgba(15, 23, 42, 0.10),
-        0 4px 15px rgba(15, 23, 42, 0.05);
-
-    text-align: center;
-
-    animation: accessBoxIn 0.45s ease;
-}
-
-
-/* ===================================================== */
-/* LOGO                                                  */
-/* ===================================================== */
-
-.access-logo {
-    width: 64px;
-    height: 64px;
-
-    margin: 0 auto 22px;
-
-    display: flex;
-    align-items: center;
-    justify-content: center;
-
-    border-radius: 18px;
-
-    background: linear-gradient(
-        135deg,
-        #0082ce,
-        #0079ad
-    );
-
-    color: #ffffff;
-
-    font-size: 22px;
-    font-weight: 800;
-
-    letter-spacing: 1px;
-
-    box-shadow:
-        0 10px 25px rgba(37, 99, 235, 0.22);
-}
-
-
-/* ===================================================== */
-/* MAIN TITLE                                            */
-/* ===================================================== */
-
-.access-box h1 {
-    margin: 0;
-
-    color: #0f172a;
-
-    font-size: 28px;
-    font-weight: 800;
-
-    line-height: 1.5;
-}
-
-
-/* ===================================================== */
-/* SUBTITLE                                              */
-/* ===================================================== */
-
-.access-box h4 {
-    margin: 10px 0 28px;
-
-    color: #64748b;
-
-    font-size: 15px;
-    font-weight: 500;
-
-    line-height: 1.8;
-}
-
-
-/* ===================================================== */
-/* ORDER NUMBER INPUT                                    */
-/* ===================================================== */
-
-.password-input {
-    width: 100%;
-    height: 56px;
-
-    box-sizing: border-box;
-
-    padding: 0 18px;
-
-    border: 1.5px solid #dbe4f0;
-
-    border-radius: 14px;
-
-    background: #f8fafc;
-
-    color: #0f172a;
-
-    font-family: inherit;
-
-    font-size: 18px;
-    font-weight: 600;
-
-    text-align: center;
-
-    outline: none;
-
-    transition:
-        border-color 0.2s ease,
-        background 0.2s ease,
-        box-shadow 0.2s ease,
-        transform 0.2s ease;
-}
-
-
-/* Placeholder */
-
-.password-input::placeholder {
-    color: #94a3b8;
-
-    font-size: 15px;
-    font-weight: 500;
-}
-
-
-/* Focus */
-
-.password-input:focus {
-    border-color: #2563eb;
-
-    background: #ffffff;
-
-    box-shadow:
-        0 0 0 4px rgba(37, 99, 235, 0.10);
-}
-
-
-/* ===================================================== */
-/* CONTINUE BUTTON                                       */
-/* ===================================================== */
-
-.continue-btn {
-    width: 100%;
-    height: 56px;
-
-    margin-top: 16px;
-
-    border: none;
-    border-radius: 14px;
-
-    background: linear-gradient(
-        135deg,
-        #008ecf,
-        #00aeff
-    );
-
-    color: #ffffff;
-
-    font-family: inherit;
-
-    font-size: 16px;
-    font-weight: 700;
-
-    cursor: pointer;
-
-    box-shadow:
-        0 10px 24px rgba(37, 99, 235, 0.20);
-
-    transition:
-        transform 0.2s ease,
-        box-shadow 0.2s ease,
-        opacity 0.2s ease;
-}
-
-
-/* Hover */
-
-.continue-btn:hover {
-    transform: translateY(-2px);
-
-    box-shadow:
-        0 14px 30px rgba(37, 99, 235, 0.26);
-}
-
-
-/* Active */
-
-.continue-btn:active {
-    transform: translateY(0);
-
-    box-shadow:
-        0 6px 15px rgba(37, 99, 235, 0.18);
-}
-
-
-/* ===================================================== */
-/* ERROR MESSAGE                                         */
-/* ===================================================== */
-
-.access-error {
-    min-height: 24px;
-
-    margin: 16px 0 0;
-
-    color: #dc2626;
-
-    font-size: 14px;
-    font-weight: 600;
-
-    line-height: 1.7;
-}
-
-
-/* ===================================================== */
-/* LOADING STATE                                         */
-/* ===================================================== */
-
-.continue-btn.loading {
-    pointer-events: none;
-
-    opacity: 0.75;
-
-    cursor: wait;
-}
-
-
-/* ===================================================== */
-/* LOGIN ANIMATION                                       */
-/* ===================================================== */
-
-@keyframes accessBoxIn {
-
-    from {
-        opacity: 0;
-        transform: translateY(15px) scale(0.98);
-    }
-
-    to {
-        opacity: 1;
-        transform: translateY(0) scale(1);
-    }
-
-}
-
-
-/* ===================================================== */
-/* MOBILE                                               */
-/* ===================================================== */
-
-@media (max-width: 600px) {
-
-    .access-screen {
-        padding: 16px;
+        padding: 10px 15px;
     }
 
 
-    .access-box {
-        max-width: 100%;
-
-        padding: 34px 24px;
-
-        border-radius: 20px;
+    body {
+        padding-top: 68px;
     }
 
 
-    .access-logo {
-        width: 58px;
-        height: 58px;
-
-        margin-bottom: 18px;
-
-        border-radius: 16px;
-
-        font-size: 20px;
+    .brand {
+        gap: 9px;
     }
 
 
-    .access-box h1 {
-        font-size: 24px;
+    .brand-logo {
+        width: 38px;
+        height: 38px;
     }
 
 
-    .access-box h4 {
-        margin-bottom: 24px;
-
+    .brand-text strong {
         font-size: 14px;
     }
 
 
-    .password-input {
-        height: 54px;
-
-        font-size: 17px;
+    .brand-text span {
+        font-size: 10px;
     }
 
 
-    .continue-btn {
-        height: 54px;
+    .theme-buttons {
+        gap: 6px;
     }
 
+
+    .course-file-btn {
+        min-height: 36px;
+
+        padding: 0 11px;
+
+        font-size: 11px;
+
+        border-radius: 9px;
+    }
+
+
+    .theme-btn {
+        width: 36px;
+        height: 36px;
+
+        font-size: 16px;
+
+        border-radius: 9px;
+    }
+}
+
+
+/* ========================================================= */
+/* ACCESS SCREEN                                             */
+/* ========================================================= */
+
+/* Full login screen. */
+.access-screen {
+
+    /* Minimum height of screen. */
+    min-height: calc(100vh - 75px);
+
+    /* Center the box. */
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    /* Padding for mobile. */
+    padding: 30px;
+}
+
+
+/* Login box. */
+.access-box {
+
+    /* Maximum width. */
+    width: 100%;
+    max-width: 430px;
+
+    /* Background. */
+    background: var(--card);
+
+    /* Border. */
+    border: 1px solid var(--line);
+
+    /* Rounded corners. */
+    border-radius: 24px;
+
+    /* Inside spacing. */
+    padding: 40px;
+
+    /* Center text. */
+    text-align: center;
+
+    /* Shadow. */
+    box-shadow:
+        0 20px 60px rgba(0, 39, 58, 0.08);
+}
+
+
+/* Login logo. */
+.access-logo {
+
+    /* Logo size. */
+    width: 65px;
+    height: 65px;
+
+    /* Center horizontally. */
+    margin: 0 auto 18px;
+
+    /* Blue background. */
+    background: var(--indigo);
+
+    /* White text. */
+    color: white;
+
+    /* Round. */
+    border-radius: 18px;
+
+    /* Center letters. */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    /* Font. */
+    font-size: 20px;
+    font-weight: 900;
+}
+
+
+/* Login title. */
+.access-box h1 {
+
+    margin: 0;
+
+    font-size: 26px;
+
+    font-weight: 900;
+}
+
+
+/* Course title. */
+.access-box h2 {
+
+    margin: 5px 0 15px;
+
+    font-size: 15px;
+
+    color: var(--indigo);
+
+    font-weight: 800;
+}
+
+
+/* Login description. */
+.access-description {
+
+    color: var(--ink-soft);
+
+    line-height: 1.8;
+
+    font-size: 14px;
+
+    margin-bottom: 25px;
+}
+
+
+/* Password input. */
+.password-input {
+
+    /* Full width. */
+    width: 100%;
+
+    /* Input height. */
+    padding: 15px;
+
+    /* Border. */
+    border: 1px solid var(--line);
+
+    /* Rounded corners. */
+    border-radius: 12px;
+
+    /* Background. */
+    background: var(--paper);
+
+    /* Text color. */
+    color: var(--ink);
+
+    /* Center the password. */
+    text-align: center;
+
+    /* Letter spacing. */
+    letter-spacing: 8px;
+
+    /* Font. */
+    font-size: 22px;
+
+    /* Remove outline. */
+    outline: none;
+}
+
+
+/* Password focus. */
+.password-input:focus {
+
+    /* Blue border. */
+    border-color: var(--indigo);
+}
+
+
+/* Consent area. */
+.consent-label {
+
+    /* Put checkbox and text beside each other. */
+    display: flex;
+
+    /* Align top. */
+    align-items: flex-start;
+
+    /* Gap. */
+    gap: 10px;
+
+    /* Text alignment. */
+    text-align: right;
+
+    /* Margin. */
+    margin: 20px 0;
+
+    /* Font size. */
+    font-size: 12px;
+
+    /* Line height. */
+    line-height: 1.7;
+
+    /* Soft color. */
+    color: var(--ink-soft);
+
+    /* Cursor. */
+    cursor: pointer;
+}
+
+
+/* Continue button. */
+.continue-btn {
+
+    /* Full width. */
+    width: 100%;
+
+    /* Padding. */
+    padding: 14px;
+
+    /* No border. */
+    border: none;
+
+    /* Rounded. */
+    border-radius: 12px;
+
+    /* Dedicated blue. */
+    background: var(--indigo);
+
+    /* White text. */
+    color: white;
+
+    /* Font. */
+    font-family: inherit;
+
+    font-weight: 900;
+
+    /* Cursor. */
+    cursor: pointer;
+
+    /* Animation. */
+    transition: 0.2s;
+}
+
+
+/* Continue hover. */
+.continue-btn:hover {
+
+    transform: translateY(-2px);
+
+    opacity: 0.92;
+}
+
+
+/* Error message. */
+.access-error {
+
+    color: var(--danger);
+
+    font-size: 13px;
+
+    min-height: 20px;
+
+    margin-bottom: 0;
 }
 
 
