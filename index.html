@@ -60,8 +60,10 @@
         </div>
 
 
-        <!-- Theme button container. -->
-<div class="theme-buttons">
+        <div class="theme-buttons">
+
+    <!-- Course file button. -->
+
 
     <!-- This button switches between light and dark mode. -->
     <button id="themeToggle" class="theme-btn" aria-label="تغيير الوضع">
@@ -71,53 +73,18 @@
 
     </button>
 
+    <a
+        href="https://yazeedenglish.com"
+        class="course-file-btn"
+        target="_blank"
+        rel="noopener noreferrer"
+    >
+        ملف الدورة
+    </a>
+
 </div>
 
 </header>
-
-
-
-    <!-- ===================================================== -->
-<!-- LOGIN / ORDER NUMBER SCREEN                          -->
-<!-- ===================================================== -->
-
-<section id="accessScreen" class="access-screen">
-
-    <div class="access-box">
-
-        <!-- Logo -->
-        <div class="access-logo">
-            YE
-        </div>
-
-        <!-- Course title -->
-        <h1>دورة ستيب STEP</h1>
-
-        <!-- Instruction -->
-        <h4>أدخل رقم طلبك للوصول إلى محتوى الدورة</h4>
-
-        <!-- Order number -->
-        <input
-            id="orderInput"
-            class="password-input"
-            type="text"
-            inputmode="numeric"
-            autocomplete="off"
-            placeholder="رقم الطلب"
-        >
-
-        <!-- Continue button -->
-        <button id="continueBtn" class="continue-btn">
-            الدخول إلى الدورة
-        </button>
-
-        <!-- Error message -->
-        <p id="accessError" class="access-error"></p>
-
-    </div>
-
-</section>
-
 
 
     <!-- ===================================================== -->
@@ -125,7 +92,7 @@
     <!-- ===================================================== -->
 
     <!-- This is the actual course website. -->
-    <main id="mainWebsite" class="main-website hidden">
+   <main id="mainWebsite" class="main-website">
 
 
         <!-- ================================================= -->
@@ -397,18 +364,19 @@
                 </div>
 
 
-                <!-- HTML5 video. -->
-                <video
-                    id="courseVideo"
-                    playsinline
-                    preload="metadata"
-                ></video>
+                <iframe
+    id="courseVideo"
+    src=""
+    loading="lazy"
+    allow="accelerometer; gyroscope; autoplay; encrypted-media; picture-in-picture;"
+    allowfullscreen
+></iframe>
 
             </div>
 
 
             <!-- Custom video controls. -->
-            <div class="video-controls">
+            <div class="video-controls" style="display: none;">
 
 
                 <!-- Play button. -->
@@ -560,8 +528,9 @@
 
 
     <!-- This connects our JavaScript file. -->
-    <script src="script.js"></script>
+    <script src="../access-guard.js"></script>
+    <script type="module" src="script.js"></script>
 
 </body>
 
-</html>
+</html>>>>
