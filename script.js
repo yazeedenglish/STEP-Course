@@ -1,10 +1,3 @@
-// ============================================================
-// DEVELOPMENT MODE
-// ============================================================
-
-// Change this to false when you want the password screen back.
-const DEVELOPMENT_MODE = false;
-
 
 // ============================================================
 // NEW COURSE SECTION
@@ -16,7 +9,7 @@ const VOCABULARY_LESSONS = [
         title: "Lesson 01",
         description:
             "وصف الدرس الأول.",
-        video: "videos/grammar.mp4"
+        video: "https://iframe.mediadelivery.net/embed/738625/11232029-7c4f-4759-9286-ab8bba5dd80f"
     },
 
     {
@@ -347,20 +340,8 @@ const LISTENING_QUESTIONS = [
 // GET HTML ELEMENTS
 // ============================================================
 
-const accessScreen =
-    document.getElementById("accessScreen");
-
 const mainWebsite =
     document.getElementById("mainWebsite");
-
-const orderInput =
-    document.getElementById("orderInput");
-
-const continueBtn =
-    document.getElementById("continueBtn");
-
-const accessError =
-    document.getElementById("accessError");
 
 const themeToggle =
     document.getElementById("themeToggle");
@@ -698,12 +679,8 @@ function openCourse(index) {
     lessonDescription.textContent =
         course.description;
 
-    courseVideo.pause();
-
     courseVideo.src =
         course.video;
-
-    courseVideo.load();
 
     videoPlaceholder.classList.remove(
         "hidden"
@@ -921,314 +898,6 @@ function formatTime(seconds) {
     return `${String(minutes).padStart(2, "0")}:${String(secondsPart).padStart(2, "0")}`;
 
 }
-
-
-// ============================================================
-// CHECK EXISTING SESSION
-// ============================================================
-
-async function checkExistingSession() {
-
-    try {
-
-        const response = await fetch(
-            "https://backend-s75r.onrender.com/api/me",
-            {
-                method: "GET",
-                credentials: "include"
-            }
-        );
-
-        const data = await response.json();
-
-
-        // ============================================
-        // SESSION VALID
-        // ============================================
-
-        if (response.ok && data.success) {
-
-            console.log(
-                "Existing session found:",
-                data.orderNumber
-            );
-
-            accessScreen.classList.add("hidden");
-
-            mainWebsite.classList.remove("hidden");
-
-
-            renderCourses();
-
-            renderQuestionSection(
-                READING_QUESTIONS,
-                "readingGrid",
-                "reading"
-            );
-
-            renderQuestionSection(
-                LISTENING_QUESTIONS,
-                "listeningGrid",
-                "listening"
-            );
-
-            return;
-        }
-
-
-        // ============================================
-        // NO SESSION
-        // ============================================
-
-        console.log(
-            "No active session."
-        );
-
-    } catch (error) {
-
-        console.error(
-            "Session check failed:",
-            error
-        );
-
-    }
-
-}
-
-checkExistingSession();
-
-
-// ============================================================
-// LOGIN / ORDER NUMBER
-// ============================================================
-
-const BACKEND_URL = "https://backend-s75r.onrender.com";
-
-
-// ============================================================
-// SHOW COURSE
-// ============================================================
-
-function showCourseWebsite() {
-
-    accessScreen.classList.add("hidden");
-
-    mainWebsite.classList.remove("hidden");
-
-    renderCourses();
-
-    renderQuestionSection(
-        READING_QUESTIONS,
-        "readingGrid",
-        "reading"
-    );
-
-    renderQuestionSection(
-        LISTENING_QUESTIONS,
-        "listeningGrid",
-        "listening"
-    );
-
-    renderCoursesForSection(
-        VOCABULARY_LESSONS,
-        "vocabularyGrid"
-    );
-
-}
-
-
-// ============================================================
-// CHECK CURRENT SESSION
-// ============================================================
-
-async function checkSession() {
-
-    try {
-
-        const response = await fetch(
-            `${BACKEND_URL}/api/me`,
-            {
-                method: "GET",
-                credentials: "include"
-            }
-        );
-
-        const data = await response.json();
-
-
-        // ============================================
-        // SESSION VALID
-        // ============================================
-
-        if (response.ok && data.success) {
-
-            showCourseWebsite();
-
-            return true;
-
-        }
-
-
-        // ============================================
-        // SESSION INVALID
-        // ============================================
-
-        accessScreen.classList.remove("hidden");
-
-        mainWebsite.classList.add("hidden");
-
-        return false;
-
-
-    } catch (error) {
-
-        console.error(
-            "Session check failed:",
-            error
-        );
-
-        accessError.textContent =
-            "حدث خطأ أثناء الاتصال بالخادم. يرجى المحاولة مرة أخرى.";
-
-        return false;
-
-    }
-
-}
-
-
-// ============================================================
-// LOGIN
-// ============================================================
-
-if (continueBtn) {
-
-    continueBtn.addEventListener(
-        "click",
-        async () => {
-
-            const orderNumber =
-                orderInput.value.trim();
-
-
-            // Clear previous error
-
-            accessError.textContent = "";
-
-
-            // Check order number
-
-            if (!orderNumber) {
-
-                accessError.textContent =
-                    "الرجاء إدخال رقم الطلب.";
-
-                return;
-
-            }
-
-
-            // Disable button
-
-            continueBtn.disabled = true;
-
-            continueBtn.classList.add(
-                "loading"
-            );
-
-            continueBtn.textContent =
-                "جاري التحقق...";
-
-
-            try {
-
-                const response = await fetch(
-    "https://backend-s75r.onrender.com/api/login",
-    {
-        method: "POST",
-
-        credentials: "include",
-
-        headers: {
-            "Content-Type": "application/json"
-        },
-
-        body: JSON.stringify({
-            orderNumber: orderNumber
-        })
-    }
-);
-
-
-                const data =
-                    await response.json();
-
-
-                // ============================================
-                // LOGIN SUCCESS
-                // ============================================
-
-                if (
-                    response.ok &&
-                    data.success
-                ) {
-
-                    showCourseWebsite();
-
-                    return;
-
-                }
-
-
-                // ============================================
-                // LOGIN FAILED
-                // ============================================
-
-                accessError.textContent =
-                    data.message ||
-                    "لا يمكن الدخول إلى الدورة.";
-
-            }
-
-
-            catch (error) {
-
-                console.error(
-                    "Login error:",
-                    error
-                );
-
-                accessError.textContent =
-                    "حدث خطأ أثناء الاتصال بالخادم. يرجى المحاولة مرة أخرى.";
-
-            }
-
-
-            finally {
-
-                continueBtn.disabled =
-                    false;
-
-                continueBtn.classList.remove(
-                    "loading"
-                );
-
-                continueBtn.textContent =
-                    "الدخول إلى الدورة";
-
-            }
-
-        }
-    );
-
-}
-
-
-// ============================================================
-// AUTOMATIC SESSION CHECK
-// ============================================================
-
-checkSession();
 
 
 // ============================================================
@@ -1818,44 +1487,25 @@ if (examSimulatorBtn) {
 
 }
 
-
 // ============================================================
-// DEVELOPMENT MODE
+// INITIALIZE COURSE
 // ============================================================
 
-if (DEVELOPMENT_MODE) {
+renderCourses();
 
-    // Hide password screen.
-    accessScreen.classList.add(
-        "hidden"
-    );
+renderQuestionSection(
+    READING_QUESTIONS,
+    "readingGrid",
+    "reading"
+);
 
-    // Show main website.
-    mainWebsite.classList.remove(
-        "hidden"
-    );
+renderQuestionSection(
+    LISTENING_QUESTIONS,
+    "listeningGrid",
+    "listening"
+);
 
-    // Create grammar courses.
-    renderCourses();
-
-    // Create reading questions.
-    renderQuestionSection(
-        READING_QUESTIONS,
-        "readingGrid",
-        "reading"
-    );
-
-    // Create listening questions.
-    renderQuestionSection(
-        LISTENING_QUESTIONS,
-        "listeningGrid",
-        "listening"
-    );
-
-    // Create the fifth course section.
 renderCoursesForSection(
     VOCABULARY_LESSONS,
     "vocabularyGrid"
 );
-
-}
